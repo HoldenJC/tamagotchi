@@ -50,5 +50,34 @@ describe('Pet', function() {
     console.log(testPet);
   });
 
+  it('should not allow any stat to be greater than 30', function(){
+    jasmine.clock().tick(10000);
+    testPet.feed();
+    testPet.playWith();
+    testPet.rest();
+    testPet.bathroom();
+    testPet.lovePet();
+    expect(testPet.food).toEqual(30);
+    expect(testPet.play).toEqual(30);
+    expect(testPet.energy).toEqual(30);
+    expect(testPet.potty).toEqual(30);
+    expect(testPet.love).toEqual(30);
+    console.log(testPet);
+  });
 
+  it('should change Tamagotchi sick property if total stat count dips below 100', function(){
+    jasmine.clock().tick(160000);
+    expect(testPet.sick).toEqual(true);
+    console.log(testPet);
+  });
+
+  it('should decrease all stat values by 2 after every 10000 milliseconds if Tamagotchi sick = true', function(){
+    jasmine.clock().tick(120000);
+    expect(testPet.food).toEqual(17);
+    expect(testPet.play).toEqual(17);
+    expect(testPet.energy).toEqual(17);
+    expect(testPet.potty).toEqual(17);
+    expect(testPet.love).toEqual(17);
+    console.log(testPet);
+  });
 })
