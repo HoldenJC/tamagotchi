@@ -2,8 +2,60 @@ import './styles.css';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { Constructor-Name } from './backend-code';
+import { Pet } from './backend-code';
+
+let tamagotchi;
+
+export function updateLabels(){
+  // let interval = setInterval(() => {
+    $("#feedLabel").html(`Food Level: ${tamagotchi.food}`);
+    $("#playWithLabel").html(`Happiness Level: ${tamagotchi.play}`);
+    $("#restLabel").html(`Energy Level: ${tamagotchi.energy}`);
+    $("#bathroomLabel").html(`Potty Satisfaction: ${tamagotchi.potty}`);
+    $("#lovePetLabel").html(`Pet's affection level: ${tamagotchi.love}`);
+    if(tamagotchi.dead === true){
+      $("button").hide();
+      // clearInterval(interval);
+    }
+  // }, 1000);
+}
+
+function addListeners() {
+  $("#startGame").click(function(){
+    tamagotchi = new Pet();
+    $("#startGame").hide();
+    updateLabels();
+    $("#feed, #playWith, #rest, #bathroom, #lovePet").show();
+    tamagotchi.reduceStats();
+  });
+
+  $("#feed").click(function(){
+    tamagotchi.feed();
+    updateLabels();
+  });
+  $("#playWith").click(function(){
+    tamagotchi.playWith();
+    updateLabels();
+  });
+  $("#rest").click(function(){
+    tamagotchi.rest();
+    updateLabels();
+  });
+  $("#bathroom").click(function(){
+    tamagotchi.bathroom();
+    updateLabels();
+  });
+  $("#lovePet").click(function(){
+    tamagotchi.lovePet();
+    updateLabels();
+  });
+
+
+}
+
 
 $(function() {
+  addListeners();
+
 
 });

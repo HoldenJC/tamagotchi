@@ -1,0 +1,7 @@
+#startGame {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+#feed, #playWith, #rest, #bathroom, #lovePet, #cleanUp {
+  display: none; 
+}

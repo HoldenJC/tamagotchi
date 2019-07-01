@@ -1,3 +1,5 @@
+import { updateLabels } from './main';
+
 export class Pet {
   constructor(){
     this.food = 30;
@@ -58,6 +60,7 @@ export class Pet {
         this.pooped = false;
         this.poopedCounter = 0;
       }
+      updateLabels();
     }, 1000);
   }
 
