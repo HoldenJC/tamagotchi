@@ -49,6 +49,11 @@ function addListeners() {
   });
 }
 
+// function statusUpdate() {
+//   if (tamagotchi.sick) {
+
+//   }
+// }
 
 $(function() {
   addListeners();
