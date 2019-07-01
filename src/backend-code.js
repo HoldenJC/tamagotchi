@@ -27,7 +27,22 @@ export class Pet {
         this.potty--;
         this.love--;
       }
-      this.checkSick();
+      if (this.food < 0) {
+        this.food = 0;
+      }
+      if (this.play < 0) {
+        this.play = 0;
+      }
+      if (this.energy < 0) {
+        this.energy = 0;
+      }
+      if (this.potty < 0) {
+        this.potty = 0;
+      }
+      if (this.love < 0) {
+        this.love = 0;
+      }
+      this.checkStatus();
     }, 10000);
   }
 
@@ -67,12 +82,16 @@ export class Pet {
     }
   }
 
-  checkSick(){
+  checkStatus(){
     if((this.food + this.play + this.energy + this.potty + this.love) < 100){
       this.sick = true;
     } else {
       this.sick = false;
     }
+    if(this.potty === 0) {
+      this.pooped = true;
+    } else {
+      this.pooped = false;
+    }
   }
-
 }

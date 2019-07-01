@@ -50,7 +50,7 @@ describe('Pet', function() {
     console.log(testPet);
   });
 
-  it('should not allow any stat to be greater than 30', function(){
+  it('should restrict stat values to be between 0 and 30', function(){
     jasmine.clock().tick(10000);
     testPet.feed();
     testPet.playWith();
@@ -62,6 +62,14 @@ describe('Pet', function() {
     expect(testPet.energy).toEqual(30);
     expect(testPet.potty).toEqual(30);
     expect(testPet.love).toEqual(30);
+    console.log(testPet);
+
+    jasmine.clock().tick(400000);
+    expect(testPet.food).toEqual(0);
+    expect(testPet.play).toEqual(0);
+    expect(testPet.energy).toEqual(0);
+    expect(testPet.potty).toEqual(0);
+    expect(testPet.love).toEqual(0);
     console.log(testPet);
   });
 
@@ -78,6 +86,12 @@ describe('Pet', function() {
     expect(testPet.energy).toEqual(17);
     expect(testPet.potty).toEqual(17);
     expect(testPet.love).toEqual(17);
+    console.log(testPet);
+  });
+
+  it('should change Tamagotchi Pooped status to true if Potty level reaches 0', function(){
+    jasmine.clock().tick(300000); 
+    expect(testPet.pooped).toEqual(true);
     console.log(testPet);
   });
 })
