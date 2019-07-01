@@ -135,4 +135,16 @@ describe('Pet', function() {
     expect(testPet.energy).toEqual(25);
     console.log(testPet);
   });
+
+  it('should change Tamagotchi Dead status to true if Food level reaches 0', function(){
+    jasmine.clock().tick(21000);     
+    expect(testPet.dead).toEqual(true); 
+    console.log(testPet);
+  });
+
+  it('should change Tamagotchi Flee status to true if Love level reaches 0', function(){
+    jasmine.clock().tick(21000);     
+    expect(testPet.flee).toEqual(true);  
+    console.log(testPet);
+  });
 })

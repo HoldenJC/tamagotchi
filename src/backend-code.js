@@ -129,5 +129,13 @@ export class Pet {
     } else if (this.unconscious === true && this.energy === 25) {
       this.unconscious = false;
     }
+
+    if(this.food === 0){
+      this.dead = true;
+    } 
+
+    if(this.love === 0){
+      this.flee = true;
+    } 
   }
 }
