@@ -49,11 +49,38 @@ function addListeners() {
   });
 }
 
-// function statusUpdate() {
-//   if (tamagotchi.sick) {
-
-//   }
-// }
+export function statusUpdate() {
+  if (tamagotchi.sick) {
+    $("#sickMessage").text("Oh no!!! Your Tamagotchi is sick :(");
+  } else {
+    $("#sickMessage").empty();
+  }
+  if (tamagotchi.unconscious) {
+    $("#unconsciousMessage").text("Your Tamagotchi has passed out from exhaustion and must recover!");
+  } else {
+    $("#unconsciousMessage").empty();
+  }
+  if (tamagotchi.dead) {
+    $("#deadMessage").text("Your Tamagotchi is dead! Oh no!!!");
+  } else {
+    $("#deadMessage").empty();
+  }
+  if (tamagotchi.pooped) {
+    $("#poopedMessage").text("Oh my! Your Tamagotchi had an accident and pooped itself!");
+  } else {
+    $("#poopedMessage").empty();
+  }
+  if (tamagotchi.flee) {
+    $("#fleeMessage").text("Your Tamagotchi felt no love from you and fleed to find a new owner! So sad!!");
+  } else {
+    $("#fleeMessage").empty();
+  }
+  if (tamagotchi.unhappy) {
+    $("#unhappyMessage").text("Your Tamagotchi is unhappy. No love for you for 5 seconds.");
+  } else {
+    $("#unhappyMessage").empty();
+  }
+}
 
 $(function() {
   addListeners();
