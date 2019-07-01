@@ -10,6 +10,7 @@ export class Pet {
     this.unhappy = false;
     this.dead = false;
     this.flee = false;
+    this.poopedCounter = 0;
   }
 
   reduceStats(){
@@ -43,6 +44,12 @@ export class Pet {
         this.love = 0;
       }
       this.checkStatus();
+      if (this.pooped === true) {
+        this.poopedCounter++;
+      }
+      if (this.poopedCounter >= 3) {
+        this.pooped = false;
+      }
     }, 10000);
   }
 
@@ -90,6 +97,7 @@ export class Pet {
     }
     if(this.potty === 0) {
       this.pooped = true;
+      this.potty = 30;
     } else {
       this.pooped = false;
     }

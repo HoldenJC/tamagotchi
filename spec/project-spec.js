@@ -68,7 +68,6 @@ describe('Pet', function() {
     expect(testPet.food).toEqual(0);
     expect(testPet.play).toEqual(0);
     expect(testPet.energy).toEqual(0);
-    expect(testPet.potty).toEqual(0);
     expect(testPet.love).toEqual(0);
     console.log(testPet);
   });
@@ -90,8 +89,9 @@ describe('Pet', function() {
   });
 
   it('should change Tamagotchi Pooped status to true if Potty level reaches 0', function(){
-    jasmine.clock().tick(300000); 
+    jasmine.clock().tick(300000);
     expect(testPet.pooped).toEqual(true);
+    expect(testPet.potty).toEqual(30);
     console.log(testPet);
   });
 })
