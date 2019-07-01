@@ -94,6 +94,10 @@ export class Pet {
     }
     this.checkStatus();
   }
+  cleanUp(){
+    this.poopedCounter += 0.5;
+    this.checkStatus();
+  }
 
   checkStatus(){
     if((this.food + this.play + this.energy + this.potty + this.love) < 100){

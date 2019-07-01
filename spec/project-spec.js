@@ -111,5 +111,12 @@ describe('Pet', function() {
     expect(testPet.potty).toEqual(24);
     expect(testPet.poopedCounter).toEqual(0);
     console.log(testPet);
-  });  
+  });
+  
+  it('should increase the poopedCounter by 0.5 every time cleanUp function is called', function(){
+    jasmine.clock().tick(210000);
+    testPet.cleanUp();
+    expect(testPet.poopedCounter).toEqual(1.5);
+    console.log(testPet); 
+  });
 })
