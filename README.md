@@ -14,7 +14,7 @@ Keep your Tamagotchi fed, played with, and well-rested to keep it alive.
 | **New Tamagotchi starts with max stats** | Start new game | Food: 30<br/>Play: 30<br/>Energy: 30<br/>Potty: 30<br/>Love: 30 |
 | **Each stat decreases by 1 every 10 seconds** | 10 seconds elapse | Food: 29<br/>Play: 29<br/>Energy: 29<br/>Potty: 29<br/>Love:29 |
 | **Feeding, playing with, resting, pottying, or petting Tamagotchi increases corresponding stat by 5** | Feed Tamagotchi (when Food: 20) | Food: 25 |
-| **Stats cannot exceed 30** | Feed Tamagotchi (when Food: 29) | Food: 30 |
+| **Stats must range from 0 to 30** | Feed Tamagotchi (when Food: 29) | Food: 30 |
 | **If total stat count dips below 100, Tamagotchi becomes sick** | N/A | Sick Tamagotchi 🤒 🤧 |
 | **If Tamagotchi is sick, each stat decreases by 2 every 10 seconds** | 10 seconds elapse (Food: 14) | Food: 12 |
 | **If Potty reaches 0, Tamagotchi has an accident and cannot be fed for the next 30 seconds for sanitary reasons** | N/A (Potty: 0) | Feed action unavailable for 30 seconds |
