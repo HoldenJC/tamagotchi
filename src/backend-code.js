@@ -1,4 +1,4 @@
-import { updateLabels } from './main';
+import { updateLabels, statusUpdate } from './main';
 
 export class Pet {
   constructor(){
@@ -17,7 +17,7 @@ export class Pet {
   }
 
   reduceStats(){
-    setInterval(() => {
+    let interval = setInterval(() => {
       updateLabels();
       if(this.sick === true){
         this.food -= 2;
@@ -60,6 +60,10 @@ export class Pet {
       if (this.poopedCounter >= 4) {
         this.pooped = false;
         this.poopedCounter = 0;
+      }
+      statusUpdate();
+      if(this.dead){
+        clearInterval(interval);
       }
     }, 1000);
   }
