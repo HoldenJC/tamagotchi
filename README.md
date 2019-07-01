@@ -1,6 +1,6 @@
 # Tamagotchi
 
-#### _Take care of your little computer animal - July 1, 2019_
+#### _Take care of your little computer animal, Tamagotchi - July 1, 2019_
 
 #### _By **Na Hyung Choi and Holden Clark**_
 
