@@ -7,7 +7,7 @@ import { Pet } from './backend-code';
 let tamagotchi;
 
 export function updateLabels(){
-  // let interval = setInterval(() => {
+  if (!tamagotchi.dead) {
     $("#feedLabel").html(`Food Level: ${tamagotchi.food}`);
     $("#playWithLabel").html(`Happiness Level: ${tamagotchi.play}`);
     $("#restLabel").html(`Energy Level: ${tamagotchi.energy}`);
@@ -15,16 +15,14 @@ export function updateLabels(){
     $("#lovePetLabel").html(`Pet's affection level: ${tamagotchi.love}`);
     if(tamagotchi.dead === true){
       $("button").hide();
-      // clearInterval(interval);
     }
-  // }, 1000);
+  }
 }
 
 function addListeners() {
   $("#startGame").click(function(){
     tamagotchi = new Pet();
     $("#startGame").hide();
-    updateLabels();
     $("#feed, #playWith, #rest, #bathroom, #lovePet").show();
     tamagotchi.reduceStats();
   });
@@ -49,8 +47,6 @@ function addListeners() {
     tamagotchi.lovePet();
     updateLabels();
   });
-
-
 }
 
 

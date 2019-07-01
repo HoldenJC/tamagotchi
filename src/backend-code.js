@@ -18,6 +18,7 @@ export class Pet {
 
   reduceStats(){
     setInterval(() => {
+      updateLabels();
       if(this.sick === true){
         this.food -= 2;
         this.play -= 2;
@@ -60,7 +61,6 @@ export class Pet {
         this.pooped = false;
         this.poopedCounter = 0;
       }
-      updateLabels();
     }, 1000);
   }
 
@@ -134,6 +134,7 @@ export class Pet {
     }
 
     if(this.food === 0){
+      updateLabels();
       this.dead = true;
     } 
 
