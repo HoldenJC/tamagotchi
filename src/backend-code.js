@@ -8,6 +8,7 @@ export class Pet {
     this.sick = false;
     this.pooped = false;
     this.unhappy = false;
+    this.unconscious = false;
     this.dead = false;
     this.flee = false;
     this.poopedCounter = 0;
@@ -21,12 +22,18 @@ export class Pet {
         this.energy -= 2;
         this.potty -= 2;
         this.love -= 2;
+        if(this.unconscious === true){
+          this.energy += 7;
+        }
       } else {
         this.food--;
         this.play--;
         this.energy--;
         this.potty--;
         this.love--;
+        if(this.unconscious === true){
+          this.energy += 6;
+        }
       }
       if (this.food < 0) {
         this.food = 0;
@@ -51,7 +58,7 @@ export class Pet {
         this.pooped = false;
         this.poopedCounter = 0;
       }
-    }, 10000);
+    }, 1000);
   }
 
   feed(){
@@ -110,5 +117,17 @@ export class Pet {
       this.pooped = true;
       this.potty = 30;
     } 
+
+    if(this.play === 0) {
+      this.unhappy = true;
+    } else {
+      this.unhappy = false;
+    }
+
+    if(this.energy === 0){
+      this.unconscious = true;
+    } else if (this.unconscious === true && this.energy === 25) {
+      this.unconscious = false;
+    }
   }
 }
