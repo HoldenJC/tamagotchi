@@ -47,8 +47,9 @@ export class Pet {
       if (this.pooped === true) {
         this.poopedCounter++;
       }
-      if (this.poopedCounter >= 3) {
+      if (this.poopedCounter >= 4) {
         this.pooped = false;
+        this.poopedCounter = 0;
       }
     }, 10000);
   }
@@ -59,6 +60,7 @@ export class Pet {
     } else {
       this.food = 30;
     }
+    this.checkStatus();
   }
   playWith(){
     if(this.play <= 25){
@@ -66,6 +68,7 @@ export class Pet {
     } else {
       this.play = 30;
     }
+    this.checkStatus();
   }
   rest(){
     if(this.energy <= 25){
@@ -73,6 +76,7 @@ export class Pet {
     } else {
       this.energy = 30;
     }
+    this.checkStatus();
   }
   bathroom(){
     if(this.potty <= 25){
@@ -80,6 +84,7 @@ export class Pet {
     } else {
       this.potty = 30;
     }
+    this.checkStatus();
   }
   lovePet(){
     if(this.love <= 25){
@@ -87,6 +92,7 @@ export class Pet {
     } else {
       this.love = 30;
     }
+    this.checkStatus();
   }
 
   checkStatus(){
@@ -95,11 +101,10 @@ export class Pet {
     } else {
       this.sick = false;
     }
+
     if(this.potty === 0) {
       this.pooped = true;
       this.potty = 30;
-    } else {
-      this.pooped = false;
-    }
+    } 
   }
 }

@@ -73,9 +73,20 @@ describe('Pet', function() {
   });
 
   it('should change Tamagotchi sick property if total stat count dips below 100', function(){
-    jasmine.clock().tick(160000);
+    jasmine.clock().tick(120000);
     expect(testPet.sick).toEqual(true);
     console.log(testPet);
+  });
+
+  it('should re-check Tamagotchi status after every action', function() {
+    jasmine.clock().tick(120000);
+    testPet.feed();
+    testPet.playWith();
+    testPet.rest(); 
+    testPet.bathroom();
+    testPet.lovePet();
+    expect(testPet.sick).toEqual(false);
+    console.log(testPet.sick);
   });
 
   it('should decrease all stat values by 2 after every 10000 milliseconds if Tamagotchi sick = true', function(){
@@ -89,9 +100,16 @@ describe('Pet', function() {
   });
 
   it('should change Tamagotchi Pooped status to true if Potty level reaches 0', function(){
-    jasmine.clock().tick(300000);
+    jasmine.clock().tick(210000);
     expect(testPet.pooped).toEqual(true);
     expect(testPet.potty).toEqual(30);
+    expect(testPet.poopedCounter).toEqual(1);
     console.log(testPet);
-  });
+
+    jasmine.clock().tick(30000);
+    expect(testPet.pooped).toEqual(false);
+    expect(testPet.potty).toEqual(24);
+    expect(testPet.poopedCounter).toEqual(0);
+    console.log(testPet);
+  });  
 })
