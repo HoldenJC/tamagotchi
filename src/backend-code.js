@@ -14,6 +14,8 @@ export class Pet {
     this.dead = false;
     this.flee = false;
     this.poopedCounter = 0;
+    this.gameTimeCounter = 0;
+    this.actionCounter = 0;
   }
 
   reduceStats(){
@@ -22,7 +24,8 @@ export class Pet {
       if(this.dead || this.flee){
         clearInterval(interval);
         return;
-      }
+      } 
+
       if(this.sick === true){
         this.food -= 2;
         this.play -= 2;
@@ -42,6 +45,15 @@ export class Pet {
           this.energy += 6;
         }
       }
+      
+      if (this.pooped === true) {
+        this.poopedCounter++;
+      }
+      if (this.poopedCounter >= 10) {
+        this.pooped = false;
+        this.poopedCounter = 0;
+      }
+
       if (this.food < 0) {
         this.food = 0;
       }
@@ -57,15 +69,9 @@ export class Pet {
       if (this.love < 0) {
         this.love = 0;
       }
+
+      this.gameTimeCounter++
       this.checkStatus();
-      if (this.pooped === true) {
-        this.poopedCounter++;
-        console.log(this.poopedCounter);
-      }
-      if (this.poopedCounter >= 10) {
-        this.pooped = false;
-        this.poopedCounter = 0;
-      }
       statusUpdate();
     }, 1000);
   }
@@ -76,6 +82,7 @@ export class Pet {
     } else {
       this.food = 30;
     }
+    this.actionCounter++;
     this.checkStatus();
   }
   playWith(){
@@ -84,6 +91,7 @@ export class Pet {
     } else {
       this.play = 30;
     }
+    this.actionCounter++;
     this.checkStatus();
   }
   rest(){
@@ -92,6 +100,7 @@ export class Pet {
     } else {
       this.energy = 30;
     }
+    this.actionCounter++;
     this.checkStatus();
   }
   bathroom(){
@@ -100,6 +109,7 @@ export class Pet {
     } else {
       this.potty = 30;
     }
+    this.actionCounter++;
     this.checkStatus();
   }
   lovePet(){
@@ -108,11 +118,12 @@ export class Pet {
     } else {
       this.love = 30;
     }
+    this.actionCounter++;
     this.checkStatus();
   }
   cleanUp(){
     this.poopedCounter += 0.5;
-    console.log(this.poopedCounter);
+    this.actionCounter++;
     this.checkStatus();
   }
 
@@ -121,7 +132,7 @@ export class Pet {
       updateLabels();
       this.dead = true;
     } else if(this.love === 0){
-      // updateLabels();
+      updateLabels();
       this.flee = true;
     } else {
       if((this.food + this.play + this.energy + this.potty + this.love) < 100){
