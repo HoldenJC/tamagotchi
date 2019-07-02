@@ -6,27 +6,33 @@ import { Pet } from './backend-code';
 
 let tamagotchi;
 
-export function updateLabels(){
+export function updateLabels() {
   if (!tamagotchi.dead && !tamagotchi.flee) {
     $("#feedLabel").html(`Food Level<br><span class="statLabels">${tamagotchi.food}</span>`);
     $("#playWithLabel").html(`Happiness Level<br><span class="statLabels">${tamagotchi.play}</span>`);
     $("#restLabel").html(`Energy Level<br><span class="statLabels">${tamagotchi.energy}</span>`);
     $("#bathroomLabel").html(`Potty Satisfaction<br><span class="statLabels">${tamagotchi.potty}</span>`);
     $("#lovePetLabel").html(`Affection level<br><span class="statLabels">${tamagotchi.love}</span>`);
-    if(tamagotchi.pooped === true){
+    if (tamagotchi.pooped) {
       $("#feed").hide();
     } else {
       $("#feed").show();
     }
-    if(tamagotchi.unhappy === true){
+    if (tamagotchi.unhappy) {
       $("#lovePet").hide();
     } else {
       $("#lovePet").show();
     }
-    if(tamagotchi.unconscious === true){
+    if (tamagotchi.unconscious) {
       $("#feed, #playWith, #rest, #bathroom, #lovePet").hide();
     } else {
-      $("#feed, #playWith, #rest, #bathroom, #lovePet").show();
+      $("#playWith, #rest, #bathroom").show();
+      if (!tamagotchi.unhappy) {
+        $("#lovePet").show();
+      }
+      if (!tamagotchi.pooped) {
+        $("#feed").show();
+      }
     }
     $("#timeElapsed").text(tamagotchi.gameTimeCounter);
     $("#actionCount").text(tamagotchi.actionCounter);
@@ -42,11 +48,11 @@ function getGIF(action, idNum) {
       data: {
         format: 'json'
       },
-      success: function(response) {
+      success: function (response) {
         $('#gif' + idNum).show().html(`<img src="${response.data[imgNum].images.fixed_width.url}">`);
         $('#gif' + idNum).delay(1000).fadeOut(500);
       },
-      error: function() {
+      error: function () {
         $('#errors').text("There was an error processing your request. Please try again.");
       }
     });
@@ -54,34 +60,34 @@ function getGIF(action, idNum) {
 }
 
 function addListeners() {
-  $("#startGame").click(function(){
+  $("#startGame").click(function () {
     tamagotchi = new Pet();
-    $("#startGame").hide();
-    $("#timeArea, #clickCount, #feed, #playWith, #rest, #bathroom, #lovePet").delay(800).fadeIn();
+    $("#startGame, #gameRules").hide();
+    $("#timeArea, #clickCount, #feed, #playWith, #rest, #bathroom, #lovePet, #statusMessages").delay(800).fadeIn();
     tamagotchi.reduceStats();
   });
 
-  $("#feed").click(function(){
+  $("#feed").click(function () {
     tamagotchi.feed();
     updateLabels();
     getGIF("food", 1);
   });
-  $("#playWith").click(function(){
+  $("#playWith").click(function () {
     tamagotchi.playWith();
     updateLabels();
     getGIF("play puppy", 2);
   });
-  $("#rest").click(function(){
+  $("#rest").click(function () {
     tamagotchi.rest();
     updateLabels();
     getGIF("sleep", 3);
   });
-  $("#bathroom").click(function(){
+  $("#bathroom").click(function () {
     tamagotchi.bathroom();
     updateLabels();
     getGIF("toilet", 4);
   });
-  $("#lovePet").click(function(){
+  $("#lovePet").click(function () {
     tamagotchi.lovePet();
     updateLabels();
     getGIF("happy dog", 5);
@@ -100,14 +106,15 @@ export function statusUpdate() {
     $("#unconsciousMessage").empty();
   }
   if (tamagotchi.dead) {
-    $("#deadMessage").text("Your Tamagotchi starved to death! Oh no!!!");
+    $("#deadMessage").html("Your Tamagotchi starved to death! Oh no!!!<br><br>GAME OVER");
+    $("#statusMessages").addClass("deathMsg");
   } else {
     $("#deadMessage").empty();
   }
   if (tamagotchi.pooped) {
     $("#poopedMessage").html(`Oh my! Your Tamagotchi had an accident and pooped itself! No feeding for 3 seconds. Clean up the mess to get back to feeding sooner!`);
     $("#poopedMessage").append(`<button id="cleanUp" type="button" class="btn btn-warning">Clean!</button>`);
-    $("#cleanUp").click(function(){
+    $("#cleanUp").click(function () {
       tamagotchi.cleanUp();
 
       updateLabels();
@@ -116,7 +123,8 @@ export function statusUpdate() {
     $("#poopedMessage").empty();
   }
   if (tamagotchi.flee) {
-    $("#fleeMessage").text("Your Tamagotchi felt no love from you and fled to find a new owner! So sad!!");
+    $("#fleeMessage").html("Your Tamagotchi felt no love from you and fled to find a new owner! So sad!!<br><br>GAME OVER");
+    $("#statusMessages").addClass("fleeMsg");
   } else {
     $("#fleeMessage").empty();
   }
@@ -127,6 +135,6 @@ export function statusUpdate() {
   }
 }
 
-$(function() {
+$(function () {
   addListeners();
 });
