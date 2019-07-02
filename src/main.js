@@ -33,6 +33,23 @@ export function updateLabels(){
   }
 }
 
+function getGIF(action, idNum, imgNum) {
+  $.ajax({
+    url: `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${action}&limit=5`,
+    type: 'GET',
+    data: {
+      format: 'json'
+    },
+    success: function(response) {
+      $('#gif' + idNum).show().html(`<img src="${response.data[imgNum].images.fixed_width.url}">`);
+      $('#gif' + idNum).delay(1000).fadeOut(500);
+    },
+    error: function() {
+      $('#errors').text("There was an error processing your request. Please try again.");
+    }
+  });
+}
+
 function addListeners() {
   $("#startGame").click(function(){
     tamagotchi = new Pet();
@@ -44,35 +61,27 @@ function addListeners() {
   $("#feed").click(function(){
     tamagotchi.feed();
     updateLabels();
-    $.ajax({
-      url: `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=food&limit=5`,
-      type: 'GET',
-      data: {
-        format: 'json'
-      },
-      success: function(response) {
-        $('#gif').html(`<img src="${response.data[2].images.fixed_width.url}">`);
-      },
-      error: function() {
-        $('#errors').text("There was an error processing your request. Please try again.");
-      }
-    });
+    getGIF("food", 1, 1);
   });
   $("#playWith").click(function(){
     tamagotchi.playWith();
     updateLabels();
+    getGIF("play puppy", 2, 1);
   });
   $("#rest").click(function(){
     tamagotchi.rest();
     updateLabels();
+    getGIF("sleep", 3, 1);
   });
   $("#bathroom").click(function(){
     tamagotchi.bathroom();
     updateLabels();
+    getGIF("toilet", 4, 0);
   });
   $("#lovePet").click(function(){
     tamagotchi.lovePet();
     updateLabels();
+    getGIF("happy dog", 5, 1);
   });
 }
 
