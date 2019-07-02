@@ -33,21 +33,24 @@ export function updateLabels(){
   }
 }
 
-function getGIF(action, idNum, imgNum) {
-  $.ajax({
-    url: `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${action}&limit=5`,
-    type: 'GET',
-    data: {
-      format: 'json'
-    },
-    success: function(response) {
-      $('#gif' + idNum).show().html(`<img src="${response.data[imgNum].images.fixed_width.url}">`);
-      $('#gif' + idNum).delay(1000).fadeOut(500);
-    },
-    error: function() {
-      $('#errors').text("There was an error processing your request. Please try again.");
-    }
-  });
+function getGIF(action, idNum) {
+  if (!tamagotchi.dead && !tamagotchi.flee) {
+    let imgNum = Math.floor(Math.random() * 100);
+    $.ajax({
+      url: `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${action}&limit=100`,
+      type: 'GET',
+      data: {
+        format: 'json'
+      },
+      success: function(response) {
+        $('#gif' + idNum).show().html(`<img src="${response.data[imgNum].images.fixed_width.url}">`);
+        $('#gif' + idNum).delay(1000).fadeOut(500);
+      },
+      error: function() {
+        $('#errors').text("There was an error processing your request. Please try again.");
+      }
+    });
+  }
 }
 
 function addListeners() {
@@ -61,27 +64,27 @@ function addListeners() {
   $("#feed").click(function(){
     tamagotchi.feed();
     updateLabels();
-    getGIF("food", 1, 1);
+    getGIF("food", 1);
   });
   $("#playWith").click(function(){
     tamagotchi.playWith();
     updateLabels();
-    getGIF("play puppy", 2, 1);
+    getGIF("play puppy", 2);
   });
   $("#rest").click(function(){
     tamagotchi.rest();
     updateLabels();
-    getGIF("sleep", 3, 1);
+    getGIF("sleep", 3);
   });
   $("#bathroom").click(function(){
     tamagotchi.bathroom();
     updateLabels();
-    getGIF("toilet", 4, 0);
+    getGIF("toilet", 4);
   });
   $("#lovePet").click(function(){
     tamagotchi.lovePet();
     updateLabels();
-    getGIF("happy dog", 5, 1);
+    getGIF("happy dog", 5);
   });
 }
 
