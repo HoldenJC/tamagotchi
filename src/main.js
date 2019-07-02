@@ -92,6 +92,9 @@ function addListeners() {
     updateLabels();
     getGIF("happy dog", 5);
   });
+  $("#newGame").click(function () {
+    document.location.reload();
+  });
 }
 
 export function statusUpdate() {
@@ -108,6 +111,7 @@ export function statusUpdate() {
   if (tamagotchi.dead) {
     $("#deadMessage").html("Your Tamagotchi starved to death! Oh no!!!<br><br>GAME OVER");
     $("#statusMessages").addClass("deathMsg");
+    $("#newGame").show();
   } else {
     $("#deadMessage").empty();
   }
@@ -125,6 +129,7 @@ export function statusUpdate() {
   if (tamagotchi.flee) {
     $("#fleeMessage").html("Your Tamagotchi felt no love from you and fled to find a new owner! So sad!!<br><br>GAME OVER");
     $("#statusMessages").addClass("fleeMsg");
+    $("#newGame").show();
   } else {
     $("#fleeMessage").empty();
   }
@@ -136,5 +141,6 @@ export function statusUpdate() {
 }
 
 $(function () {
+  $("#newGame").hide();
   addListeners();
 });

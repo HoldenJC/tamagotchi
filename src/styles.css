@@ -98,5 +98,9 @@ img {
 }
 
 #newGame {
-  display: none;
+  align-items: center;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
 }
