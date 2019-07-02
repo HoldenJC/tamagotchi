@@ -17,6 +17,28 @@
   margin: 25px;
 }
 
+#gameRules{
+  color: white;
+  margin-left: 10vw;
+  margin-top: 10px;
+}
+
+#statusMessages {
+  display: none;
+  background: rgba(0, 123, 255, 0.75);
+  min-height: 10vh;
+  width: 50vw;
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.deathMsg {
+  background: rgba(255, 0, 0, 0.65) !important;
+}
+.fleeMsg {
+  background: rgba(233, 143, 26, 0.85) !important;
+}
+
 body {
   background-image: url("http://hdqwalls.com/wallpapers/stitch-pixel-art-vm.jpg");
   background-repeat: no-repeat;
@@ -73,4 +95,8 @@ img {
   border: 2px solid;
   border-color: white;
   border-radius: 5px;
+}
+
+#newGame {
+  display: none;
 }
