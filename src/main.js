@@ -18,6 +18,16 @@ export function updateLabels(){
     } else {
       $("#feed").show();
     }
+    if(tamagotchi.unhappy === true){
+      $("#lovePet").hide();
+    } else {
+      $("#lovePet").show();
+    }
+    if(tamagotchi.unconscious === true){
+      $("#feed, #playWith, #rest, #bathroom, #lovePet").hide();
+    } else {
+      $("#feed, #playWith, #rest, #bathroom, #lovePet").show();
+    }
   }
 }
 
@@ -53,7 +63,7 @@ function addListeners() {
 
 export function statusUpdate() {
   if (tamagotchi.sick) {
-    $("#sickMessage").text("Oh no!!! Your Tamagotchi is sick :(");
+    $("#sickMessage").text("Oh no!!! Your Tamagotchi is sick :( Stats are decreasing faster.");
   } else {
     $("#sickMessage").empty();
   }
@@ -63,7 +73,7 @@ export function statusUpdate() {
     $("#unconsciousMessage").empty();
   }
   if (tamagotchi.dead) {
-    $("#deadMessage").text("Your Tamagotchi is dead! Oh no!!!");
+    $("#deadMessage").text("Your Tamagotchi starved to death! Oh no!!!");
   } else {
     $("#deadMessage").empty();
   }
@@ -83,7 +93,7 @@ export function statusUpdate() {
     $("#fleeMessage").empty();
   }
   if (tamagotchi.unhappy) {
-    $("#unhappyMessage").text("Your Tamagotchi is unhappy. No love for you for 5 seconds.");
+    $("#unhappyMessage").text("Your Tamagotchi is unhappy. No love for you until you play with it.");
   } else {
     $("#unhappyMessage").empty();
   }
