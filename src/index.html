@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tamagotchi</title>
-  </head>
-  <body>
-    <div class="container">
-      <button id="startGame" type="button" class="btn btn-primary">Birth Tamagotchi!!!</button>
-      
+
+<head>
+  <title>Tamagotchi</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron shadow">
+      <h1 class="display-2">Tamagotchi Madness!</h1>
+    </div>
+
+    <button id="startGame" type="button" class="btn btn-primary">Birth Tamagotchi!!!</button>
+
+    <div id="playArea">
       <div class="row">
         <div class="col">
           <label id="feedLabel" for="feed"></label><br>
@@ -23,40 +30,43 @@
         <div class="col">
           <label id="lovePetLabel" for="lovePet"></label><br>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <label id="cleanUpLabel" for="cleanUp"></label><br>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col">
-          <button id="feed" type="button" class="btn btn-primary">Feed</button>
+          <button id="feed" type="button" class="btn btn-primary">Feed &#127831</button>
         </div>
         <div class="col">
-          <button id="playWith" type="button" class="btn btn-primary">Play</button>
+          <button id="playWith" type="button" class="btn btn-primary">Play &#9977</button>
         </div>
         <div class="col">
-          <button id="rest" type="button" class="btn btn-primary">Rest</button>
+          <button id="rest" type="button" class="btn btn-primary">Rest &#128564</button>
         </div>
         <div class="col">
-          <button id="bathroom" type="button" class="btn btn-primary">Bathroom Time</button>
+          <button id="bathroom" type="button" class="btn btn-primary">Potty &#128169</button>
         </div>
         <div class="col">
-          <button id="lovePet" type="button" class="btn btn-primary">Pet Tamagotchi</button>
+          <button id="lovePet" type="button" class="btn btn-primary">Pet &#128400</button>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <button id="cleanUp" type="button" class="btn btn-danger">Clean Up</button>
-        </div>
+        </div> -->
       </div>
+    </div>
 
+    <div id="statusMessages">
       <div id="sickMessage"></div>
       <div id="unconsciousMessage"></div>
       <div id="deadMessage"></div>
       <div id="poopedMessage"></div>
       <div id="fleeMessage"></div>
       <div id="unhappyMessage"></div>
-
-
-
     </div>
-  </body>
+
+
+  </div>
+</body>
+
 </html>
