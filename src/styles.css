@@ -67,3 +67,10 @@ label, #statusMessages {
   padding: 7px;
   color: white;
 }
+
+img {
+  margin-top: 15px;
+  border: 2px solid;
+  border-color: white;
+  border-radius: 5px;
+}
