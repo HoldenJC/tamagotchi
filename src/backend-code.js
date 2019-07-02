@@ -56,8 +56,9 @@ export class Pet {
       this.checkStatus();
       if (this.pooped === true) {
         this.poopedCounter++;
+        console.log(this.poopedCounter);
       }
-      if (this.poopedCounter >= 4) {
+      if (this.poopedCounter >= 10) {
         this.pooped = false;
         this.poopedCounter = 0;
       }
@@ -110,6 +111,7 @@ export class Pet {
   }
   cleanUp(){
     this.poopedCounter += 0.5;
+    console.log(this.poopedCounter);
     this.checkStatus();
   }
 
