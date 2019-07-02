@@ -44,6 +44,19 @@ function addListeners() {
   $("#feed").click(function(){
     tamagotchi.feed();
     updateLabels();
+    $.ajax({
+      url: `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=food&limit=5`,
+      type: 'GET',
+      data: {
+        format: 'json'
+      },
+      success: function(response) {
+        $('#gif').html(`<img src="${response.data[2].images.fixed_width.url}">`);
+      },
+      error: function() {
+        $('#errors').text("There was an error processing your request. Please try again.");
+      }
+    });
   });
   $("#playWith").click(function(){
     tamagotchi.playWith();
