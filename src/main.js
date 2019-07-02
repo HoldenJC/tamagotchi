@@ -8,13 +8,15 @@ let tamagotchi;
 
 export function updateLabels(){
   if (!tamagotchi.dead) {
-    $("#feedLabel").html(`Food Level: ${tamagotchi.food}`);
-    $("#playWithLabel").html(`Happiness Level: ${tamagotchi.play}`);
-    $("#restLabel").html(`Energy Level: ${tamagotchi.energy}`);
-    $("#bathroomLabel").html(`Potty Satisfaction: ${tamagotchi.potty}`);
-    $("#lovePetLabel").html(`Pet's affection level: ${tamagotchi.love}`);
-    if(tamagotchi.dead === true){
-      $("button").hide();
+    $("#feedLabel").html(`Food Level<br><span class="statLabels">${tamagotchi.food}</span>`);
+    $("#playWithLabel").html(`Happiness Level<br><span class="statLabels">${tamagotchi.play}</span>`);
+    $("#restLabel").html(`Energy Level<br><span class="statLabels">${tamagotchi.energy}</span>`);
+    $("#bathroomLabel").html(`Potty Satisfaction<br><span class="statLabels">${tamagotchi.potty}</span>`);
+    $("#lovePetLabel").html(`Affection level<br><span class="statLabels">${tamagotchi.love}</span>`);
+    if(tamagotchi.pooped === true){
+      $("#feed").hide();
+    } else {
+      $("#feed").show();
     }
   }
 }
@@ -23,7 +25,7 @@ function addListeners() {
   $("#startGame").click(function(){
     tamagotchi = new Pet();
     $("#startGame").hide();
-    $("#feed, #playWith, #rest, #bathroom, #lovePet").show();
+    $("#feed, #playWith, #rest, #bathroom, #lovePet").delay(800).fadeIn();
     tamagotchi.reduceStats();
   });
 
@@ -66,7 +68,12 @@ export function statusUpdate() {
     $("#deadMessage").empty();
   }
   if (tamagotchi.pooped) {
-    $("#poopedMessage").text("Oh my! Your Tamagotchi had an accident and pooped itself!");
+    $("#poopedMessage").html(`Oh my! Your Tamagotchi had an accident and pooped itself! No feeding for 3 seconds. Clean up the mess to get back to feeding sooner!`);
+    $("#poopedMessage").append(`<button id="cleanUp" type="button" class="btn btn-warning">Clean!</button>`);
+    $("#cleanUp").click(function(){
+      tamagotchi.cleanUp();
+      updateLabels();
+    });
   } else {
     $("#poopedMessage").empty();
   }
