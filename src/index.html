@@ -20,7 +20,25 @@
 
     <button id="startGame" type="button" class="btn btn-primary">Birth Tamagotchi!!!</button>
 
+    <div id="gameRules">
+     <ul>
+      <li>Your Tamagotchi has 5 stats, each with a max value of 30 that decreases by 1 per second.</li>
+      <li>Take care of your Tamagotchi by clicking the various action buttons. Each click will add 5 points.</li>
+      <li>If your Tamagotchi falls below 100 total stat points, it will become sick, doubling the rate of point decrease.</li>
+      <li>If the food level drops to 0, your Tamagotchi will die, and if the love level drops to zero, it will run away.</li>
+      <li>The objective is to keep your Tamagotchi alive and affectionate for you for as long as possible, good luck!</li>
+     </ul> 
+    </div>
+
     <div id="playArea">
+        <div id="statusMessages" class="card">
+            <div id="sickMessage"></div>
+            <div id="unconsciousMessage"></div>
+            <div id="poopedMessage"></div>
+            <div id="unhappyMessage"></div>
+            <div id="fleeMessage"></div>
+            <div id="deadMessage"></div>
+          </div>
       <div class="row">
         <div class="col">
           <label id="feedLabel" for="feed"></label><br>
@@ -77,16 +95,9 @@
           </div>
         </div>
       </div>
+    <button class="btn btn-warning" id="newGame">New Game</button>  
     </div>
     <div id="errors"></div>
-    <div id="statusMessages">
-      <div id="sickMessage"></div>
-      <div id="unconsciousMessage"></div>
-      <div id="deadMessage"></div>
-      <div id="poopedMessage"></div>
-      <div id="fleeMessage"></div>
-      <div id="unhappyMessage"></div>
-    </div>
   </div>
 </body>
 
