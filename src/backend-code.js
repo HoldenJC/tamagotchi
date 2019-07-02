@@ -19,6 +19,10 @@ export class Pet {
   reduceStats(){
     let interval = setInterval(() => {
       updateLabels();
+      if(this.dead || this.flee){
+        clearInterval(interval);
+        return;
+      }
       if(this.sick === true){
         this.food -= 2;
         this.play -= 2;
@@ -63,9 +67,6 @@ export class Pet {
         this.poopedCounter = 0;
       }
       statusUpdate();
-      if(this.dead){
-        clearInterval(interval);
-      }
     }, 1000);
   }
 
@@ -116,36 +117,35 @@ export class Pet {
   }
 
   checkStatus(){
-    if((this.food + this.play + this.energy + this.potty + this.love) < 100){
-      this.sick = true;
-    } else {
-      this.sick = false;
-    }
-
-    if(this.potty === 0) {
-      this.pooped = true;
-      this.potty = 30;
-    } 
-
-    if(this.play === 0) {
-      this.unhappy = true;
-    } else {
-      this.unhappy = false;
-    }
-
-    if(this.energy === 0){
-      this.unconscious = true;
-    } else if (this.unconscious === true && this.energy === 25) {
-      this.unconscious = false;
-    }
-
     if(this.food === 0){
       updateLabels();
       this.dead = true;
-    } 
-
-    if(this.love === 0){
+    } else if(this.love === 0){
+      // updateLabels();
       this.flee = true;
-    } 
+    } else {
+      if((this.food + this.play + this.energy + this.potty + this.love) < 100){
+        this.sick = true;
+      } else {
+        this.sick = false;
+      }
+  
+      if(this.potty === 0) {
+        this.pooped = true;
+        this.potty = 30;
+      } 
+  
+      if(this.play === 0) {
+        this.unhappy = true;
+      } else {
+        this.unhappy = false;
+      }
+  
+      if(this.energy === 0){
+        this.unconscious = true;
+      } else if (this.unconscious === true && this.energy === 25) {
+        this.unconscious = false;
+      }
+    }
   }
 }
